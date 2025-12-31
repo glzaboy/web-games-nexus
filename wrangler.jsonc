@@ -2,7 +2,7 @@
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"main": ".open-next/worker.js",
 	"name": "web-games-nexus",
-	"compatibility_date": "2025-03-01",
+	"compatibility_date": "2025-12-01",
 	"compatibility_flags": [
 		// Enable Node.js API
 		// see https://developers.cloudflare.com/workers/configuration/compatibility-flags/#nodejs-compatibility-flag
@@ -11,25 +11,20 @@
 		// see https://developers.cloudflare.com/workers/configuration/compatibility-flags/#global-fetch-strictly-public
 		"global_fetch_strictly_public",
 	],
+	"minify": true,
 	"assets": {
 		"directory": ".open-next/assets",
 		"binding": "ASSETS",
 	},
-	"services": [
-		{
-			"binding": "WORKER_SELF_REFERENCE",
-			// The service should match the "name" of your worker
-			"service": "web-games-nexus",
-		},
-	],
 	"observability": {
 		"enabled": true
 	},
-	"upload_source_maps": true,
 	"r2_buckets": [
+		// Create a R2 binding with the binding name "NEXT_INC_CACHE_R2_BUCKET"
 		{
 			"binding": "NEXT_INC_CACHE_R2_BUCKET",
-			"bucket_name": "webgamesinc-cache"
-		}
-	]
+			"bucket_name": "webgamesinc-cache",
+		},
+	],
+	"upload_source_maps": true
 }
