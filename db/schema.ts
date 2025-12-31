@@ -1,4 +1,4 @@
-import { sqliteTable, AnySQLiteColumn, text, numeric, integer, uniqueIndex, index, } from "drizzle-orm/sqlite-core"
+import { sqliteTable, AnySQLiteColumn, text, numeric, integer, uniqueIndex, index, int, } from "drizzle-orm/sqlite-core"
 import { sql, eq } from "drizzle-orm"
 
 const baseTable = {
@@ -9,53 +9,51 @@ const baseTable = {
     .default(sql`(unixepoch())`)
 }
 
-export const user = sqliteTable("User", {
+
+
+
+export const categories = sqliteTable("categories", {
   ...baseTable,
-  userId: text().notNull().unique(),
-  machineMaxNum: integer("machine_max_num").notNull().default(2),
-  info: text().notNull()
-},
-  (table) => [
-    index("idx_User_userId").on(table.userId),
-  ]);
-
-
-
-
-
-export const allProduct = sqliteTable("AllProduct", {
-  ...baseTable,
-  label: text().notNull(),
-  value: text(),
-},
-  (table) => [
-    uniqueIndex("idx_all_label").on(table.label),
-  ]);
-
-
-
-export const product = sqliteTable("Product", {
-  ...baseTable,
-  userId: text().notNull().references(() => user.userId),
-  productName: text().notNull(),
+  slug: text().notNull().unique(),
+  name: text().notNull(),
+  icon: text(),
+  sortOrder: int().default(0),
   expTime: integer('exp_time', { mode: "timestamp" }).notNull()
 },
   (table) => [
-    index("idx_product_userId").on(table.userId),
+    index("idx_categories_slug").on(table.slug),
   ]);
 
-export const machineBinding = sqliteTable("MachineBinding", {
+export const games = sqliteTable("games", {
   ...baseTable,
-  userId: text("user_id").notNull().references(() => user.userId),
-  machineId: text("machine_id").notNull(),
-  endTime: integer("end_time", { mode: "timestamp" }),
-  isActive: integer("is_active", { mode: "boolean" }).notNull().default(true),
+  slug: text().notNull().unique(),
+  title: text().notNull(),
+  description: text(),
+  coverUrl: text(),
+  gameUrl: text(),
+  categoryId: text("category_id").notNull().references(() => categories.id),
+  isFeatured: integer("is_featured", { mode: "boolean" }).default(false),
+  playCount: int("play_count").default(0),
+  likes: int().default(0),
+  expTime: integer('exp_time', { mode: "timestamp" }).notNull()
 },
-  (table) => ([
-    uniqueIndex("idx_MachineBinding_userId_machineId")
-      .on(table.userId, table.machineId)
-      .where(sql`${table.isActive} = 1`),
-    index("idx_MachineBinding_userId").on(table.userId),
-    index("idx_MachineBinding_machineId").on(table.machineId),
-    index("idx_MachineBinding_isActive").on(table.isActive)
-  ]));
+  (table) => [
+    index("idx_game_slug").on(table.slug),
+  ]);
+
+
+export const reviews = sqliteTable("reviews", {
+  ...baseTable,
+  gameId: int("game_id").notNull().references(() => games.id),
+  title: text().notNull(),
+  content: text().notNull(),
+  type: text().notNull(),
+  videoUrl: text("video_url").notNull(),
+  authorName: text("author_name").notNull(),
+  viewCount: int("view_count").default(0),
+  isFeatured: integer("is_featured", { mode: "boolean" }).default(false),
+  expTime: integer('exp_time', { mode: "timestamp" }).notNull()
+},
+  (table) => [
+    index("idx_reviews_Id").on(table.gameId),
+  ]);

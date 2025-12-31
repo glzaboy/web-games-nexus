@@ -2,7 +2,7 @@
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"main": ".open-next/worker.js",
 	"name": "web-games-nexus",
-	"compatibility_date": "2025-12-01",
+	"compatibility_date": "2025-11-17",
 	"compatibility_flags": [
 		// Enable Node.js API
 		// see https://developers.cloudflare.com/workers/configuration/compatibility-flags/#nodejs-compatibility-flag
@@ -19,6 +19,13 @@
 	"observability": {
 		"enabled": true
 	},
+	//	"routes": [
+	//		{
+	//			"pattern": "game.steamsda.com",
+	//			"zone_name": "steamsda.com",
+	//			"custom_domain": true
+	//		}
+	//	],
 	"r2_buckets": [
 		// Create a R2 binding with the binding name "NEXT_INC_CACHE_R2_BUCKET"
 		{
