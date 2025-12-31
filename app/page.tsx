@@ -1,5 +1,21 @@
 import Image from "next/image";
-
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "Steam Sda 超级Steam CsGo 饰品购买出售工具",
+  description: "Steam Sda 超级Steam CsGo 饰品购买出售工具，让你轻松购买和出售CSGO饰品，让你的CSGO游戏更加丰富！",
+  keywords: "Steam Sda 超级Steam CsGo 饰品购买出售工具，让你轻松购买和出售CSGO饰品，让你的CSGO游戏更加丰富！",
+  openGraph: {
+    title: "Steam Sda 超级Steam CsGo 饰品购买出售工具",
+    description: "Steam Sda 超级Steam CsGo 饰品购买出售工具，让你轻松购买和出售CSGO饰品，让你的CSGO游戏更加丰富！",
+  },
+  twitter: {
+    title: "Steam Sda 超级Steam CsGo 饰品购买出售工具",
+    description: "Steam Sda 超级Steam CsGo 饰品购买出售工具，让你轻松购买和出售CSGO饰品，让你的CSGO游戏更加丰富！",
+  },
+  authors: [
+    { name: "glzaboy", url: "github.com/SteamSda" }
+  ],
+};
 export default function Home() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">

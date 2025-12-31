@@ -26,5 +26,13 @@
 			"bucket_name": "webgamesinc-cache",
 		},
 	],
-	"upload_source_maps": true
+	"upload_source_maps": true,
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "web-games-nexus",
+			"database_id": "af346e39-3745-46f7-b3d1-72b4cbd95f1c",
+			"migrations_dir": "./migrations"
+		}
+	]
 }
