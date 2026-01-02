@@ -1,4 +1,6 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## 游戏复古网站
+本项目是一个***复古游戏***平台，项目本身基于```nextjs```+```drizzle``` 项目可以托管于Cloudflare平台。此项目充分利用Cloudflare的各种资源，除了域名外其它均可以免费托管于Cloudflare平台。
+
 
 ## Getting Started
 
@@ -34,3 +36,28 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+
+
+
+# 重要命令
+
+## export data d1
+```bash
+npx wrangler d1 export web-games-nexus --remote --output a.sql
+```
+
+## import data d1
+```bash
+npx wrangler d1 execute web-games-nexus --local --file a.sql
+```
+
+# 列出本地数据表
+```bash
+npx wrangler d1 execute web-games-nexus --local --command="SELECT name FROM sqlite_schema WHERE type='table' AND name NOT LIKE 'sqlite_%';"
+```
+# 执行命令
+```bash
+npx wrangler d1 execute web-games-nexus --local --command="drop table platforms;"
+```
