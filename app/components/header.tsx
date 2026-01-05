@@ -23,14 +23,9 @@ import { useTheme } from "next-themes"
 import svgIcon from "@/public/logo.svg"
 import {
     NavigationMenu,
-    NavigationMenuContent,
     //   NavigationMenuIndicator,
     NavigationMenuItem,
-    NavigationMenuLink,
     NavigationMenuList,
-    NavigationMenuTrigger,
-    //   NavigationMenuViewport,
-    navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 
 export default function Header() {
@@ -48,7 +43,7 @@ export default function Header() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-16">
                     <div className="flex items-center">
-                        <div className="flex-shrink-0 flex items-center">
+                        <div className="shrink-0 flex items-center">
                             <div className={`h-8 w-8 rounded-md`} >
                                 <Image src={svgIcon} alt="logo" width={100} height={100} />
                             </div>
@@ -60,19 +55,19 @@ export default function Header() {
                             <NavigationMenu>
                                 <NavigationMenuList className="flex-wrap">
                                     <NavigationMenuItem>
-                                        <NavigationMenuLink className={navigationMenuTriggerStyle()} href="/">
-                                            首页
-                                        </NavigationMenuLink>
+                                        <Link href="/">
+                                            <Button variant={"ghost"} className="hover:text-2xl">首页</Button>
+                                        </Link>
                                     </NavigationMenuItem>
                                     <NavigationMenuItem>
-                                        <NavigationMenuLink className={navigationMenuTriggerStyle()} href="/categories">
-                                            分类
-                                        </NavigationMenuLink>
+                                        <Link href="/categories">
+                                            <Button variant={"ghost"} className="hover:text-2xl">分类</Button>
+                                        </Link>
                                     </NavigationMenuItem>
                                     <NavigationMenuItem>
-                                        <NavigationMenuLink className={navigationMenuTriggerStyle()} href="/platforms">
-                                            平台
-                                        </NavigationMenuLink>
+                                        <Link href="/platforms">
+                                            <Button variant={"ghost"} className="hover:text-2xl">平台</Button>
+                                        </Link>
                                     </NavigationMenuItem>
                                 </NavigationMenuList>
                             </NavigationMenu>

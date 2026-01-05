@@ -1,6 +1,15 @@
 // db/schema.ts
 import { sqliteTable, text, integer, index, primaryKey } from 'drizzle-orm/sqlite-core';
-import { relations } from 'drizzle-orm';
+import { relations, sql } from 'drizzle-orm';
+import { boolean } from 'drizzle-orm/gel-core';
+
+const baseTable = {
+  id: integer().primaryKey({ autoIncrement: true }).notNull(),
+  createdAt: integer("created_at", { mode: 'timestamp' }).notNull()
+    .default(sql`(unixepoch())`),
+  updateAt: integer("update_at", { mode: 'timestamp' }).notNull()
+    .default(sql`(unixepoch())`)
+}
 
 // 游戏表
 export const games = sqliteTable('games', {
@@ -20,20 +29,25 @@ export const games = sqliteTable('games', {
 }));
 // 游戏分类
 export const platforms = sqliteTable('platforms', {
-  id: integer('id').primaryKey({ autoIncrement: true }),
+  ...baseTable,
   slug: text('slug').notNull().unique(),
   name: text('name', { length: 30 }).notNull(),
   icon: text('icon'),
-}, (table) => ({
-  slug: index("slug").on(table.slug),
-}));
+  sort: integer('sort'),
+}, (table) => [
+  index("idx_platforms_sulg").on(table.slug),
+]);
 // 游戏分类
 export const categories = sqliteTable('categories', {
-  id: integer('id').primaryKey(),
+  ...baseTable,
   slug: text('slug').notNull().unique(),
   name: text('name').notNull(),
   icon: text('icon'),
-});
+  sort: integer('sort'),
+  enable: integer("enable", { mode: 'boolean' }).default(true)
+}, (table) => [
+  index("idx_categories_slug").on(table.slug)
+]);
 
 // 专题（游戏集合）
 export const collections = sqliteTable('collections', {

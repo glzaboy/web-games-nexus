@@ -1,10 +1,4 @@
 PRAGMA defer_foreign_keys=TRUE;
-CREATE TABLE `categories` (
-	`id` integer PRIMARY KEY NOT NULL,
-	`slug` text NOT NULL,
-	`name` text NOT NULL,
-	`icon` text
-);
 CREATE TABLE `collection_games` (
 	`id` integer,
 	`collection_id` integer,
@@ -36,11 +30,15 @@ CREATE TABLE `games` (
 );
 CREATE TABLE `platforms` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+	`created_at` integer DEFAULT (unixepoch()) NOT NULL,
+	`update_at` integer DEFAULT (unixepoch()) NOT NULL,
 	`slug` text NOT NULL,
 	`name` text(30) NOT NULL,
 	`icon` text
-);
-INSERT INTO "platforms" VALUES(1,'nes','NES',NULL);
+, `sort` integer);
+INSERT INTO "platforms" VALUES(1,1767594991,1767594991,'dos','DOS',NULL,3);
+INSERT INTO "platforms" VALUES(2,1767594991,1767594991,'arcade','街机',NULL,2);
+INSERT INTO "platforms" VALUES(3,1767594991,1767594991,'nes','NES',NULL,1);
 CREATE TABLE `reviews` (
 	`id` integer PRIMARY KEY NOT NULL,
 	`game_id` integer,
@@ -53,12 +51,35 @@ CREATE TABLE `reviews` (
 	`created_at` integer NOT NULL,
 	FOREIGN KEY (`game_id`) REFERENCES `games`(`id`) ON UPDATE no action ON DELETE no action
 );
+CREATE TABLE `categories` (
+	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+	`created_at` integer DEFAULT (unixepoch()) NOT NULL,
+	`update_at` integer DEFAULT (unixepoch()) NOT NULL,
+	`slug` text NOT NULL,
+	`name` text NOT NULL,
+	`icon` text,
+	`sort` integer,
+	`enable` integer DEFAULT true
+);
+INSERT INTO "categories" VALUES(1,1767597598,1767597598,'Platformer','平台跳跃',NULL,2,1);
+INSERT INTO "categories" VALUES(2,1767598075,1767598075,'Shoot ''em up','横版射击',NULL,NULL,1);
+INSERT INTO "categories" VALUES(3,1767598075,1767598075,'Beat ''em up','清版动作',NULL,NULL,1);
+INSERT INTO "categories" VALUES(4,1767598075,1767598075,'Action-Adventure','动作冒险',NULL,NULL,1);
+INSERT INTO "categories" VALUES(5,1767598075,1767598075,'RPG','角色扮演',NULL,NULL,1);
+INSERT INTO "categories" VALUES(6,1767598075,1767598075,'SRPG','策略角色扮演',NULL,NULL,1);
+INSERT INTO "categories" VALUES(7,1767598075,1767598075,'Sports','体育游戏',NULL,NULL,1);
+INSERT INTO "categories" VALUES(8,1767598166,1767598166,'Puzzle','益智游戏',NULL,NULL,1);
+INSERT INTO "categories" VALUES(9,1767598166,1767598166,'Fighting','格斗游戏',NULL,NULL,1);
+INSERT INTO "categories" VALUES(10,1767598166,1767598166,'Racing','赛车游戏',NULL,NULL,1);
+INSERT INTO "categories" VALUES(11,1767598166,1767598166,'Music','音乐游戏',NULL,NULL,1);
 DELETE FROM sqlite_sequence;
-INSERT INTO "sqlite_sequence" VALUES('platforms',1);
-CREATE UNIQUE INDEX `categories_slug_unique` ON `categories` (`slug`);
+INSERT INTO "sqlite_sequence" VALUES('platforms',3);
+INSERT INTO "sqlite_sequence" VALUES('categories',11);
 CREATE UNIQUE INDEX `collections_slug_unique` ON `collections` (`slug`);
 CREATE UNIQUE INDEX `games_slug_unique` ON `games` (`slug`);
 CREATE INDEX `slug_idx` ON `games` (`slug`);
 CREATE INDEX `hot_idx` ON `games` (`is_hot`);
 CREATE UNIQUE INDEX `platforms_slug_unique` ON `platforms` (`slug`);
-CREATE INDEX `slug` ON `platforms` (`slug`);
+CREATE INDEX `idx_platforms_sulg` ON `platforms` (`slug`);
+CREATE UNIQUE INDEX `categories_slug_unique` ON `categories` (`slug`);
+CREATE INDEX `idx_categories_slug` ON `categories` (`slug`);

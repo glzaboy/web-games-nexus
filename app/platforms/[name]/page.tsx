@@ -5,5 +5,9 @@ export default async function Home({
     params: Promise<{ name: string }>
 }) {
     const { name } = await params;
-    return <>当前游戏平台: {name}</>
+    return <><main className="grow">
+        <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+            当前游戏平台: {name}
+        </div>
+    </main></>
 }

@@ -28,13 +28,11 @@ export const metadata: Metadata = {
     ],
 };
 export default async function Categories() {
-
-
     return <>
-        <main className="flex-grow">
+        <main className="grow">
             <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
                 <div className="px-4 py-6 sm:px-0">
-                    <section className="mb-12">
+                    <section className="mb-1">
                         <div className="flex items-center gap-2 mb-6">
                             <Flame className="h-6 w-6 text-red-500" />
                             <h2 className="text-2xl font-bold">平台</h2>
@@ -45,8 +43,6 @@ export default async function Categories() {
                             <Platforms></Platforms>
                         </Suspense>
                     </>
-
-
                 </div>
             </div>
         </main>
@@ -56,14 +52,20 @@ async function Platforms() {
     const db = await getDbAsync();
     //await new Promise(resolve => setTimeout(resolve, 3000));
     const [platforms] = await Promise.all([
-        db.query.platforms.findMany()
+        db.query.platforms.findMany({
+            orderBy: (platforms, { asc }) => [
+                asc(platforms.sort),  // 先按 sort
+                asc(platforms.id)     // 再按 id
+            ]
+        })
     ])
+    console.log(platforms);
     return (<>
         {
             platforms.map((element) => {
-                return <><Link key={element.id} href={{
-                    pathname: `/platforms/${element.name}`
-                }}><Button variant="link" >{element.name}</Button></Link></>
+                return <Link key={element.id} href={{
+                    pathname: `/platforms/${element.slug}`
+                }}><Button variant="link" >{element.name}</Button></Link>
             })
         }
     </>);
