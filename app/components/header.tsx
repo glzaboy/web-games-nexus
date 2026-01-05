@@ -70,16 +70,9 @@ export default function Header() {
                                         </NavigationMenuLink>
                                     </NavigationMenuItem>
                                     <NavigationMenuItem>
-                                        <NavigationMenuTrigger>Item One</NavigationMenuTrigger>
-                                        <NavigationMenuContent>
-                                            <NavigationMenuLink>Link</NavigationMenuLink>
-                                        </NavigationMenuContent>
-                                    </NavigationMenuItem>
-                                    <NavigationMenuItem>
-                                        <NavigationMenuTrigger>Item One2</NavigationMenuTrigger>
-                                        <NavigationMenuContent>
-                                            <NavigationMenuLink>Link23</NavigationMenuLink>
-                                        </NavigationMenuContent>
+                                        <NavigationMenuLink className={navigationMenuTriggerStyle()} href="/platforms">
+                                            平台
+                                        </NavigationMenuLink>
                                     </NavigationMenuItem>
                                 </NavigationMenuList>
                             </NavigationMenu>

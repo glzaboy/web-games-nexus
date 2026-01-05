@@ -4,7 +4,7 @@ import { relations } from 'drizzle-orm';
 
 // 游戏表
 export const games = sqliteTable('games', {
-  id: integer('id').primaryKey(),
+  id: integer('id').primaryKey({ autoIncrement: true }),
   slug: text('slug').notNull().unique(),
   title: text('title').notNull(),
   description: text('description'),
@@ -20,11 +20,13 @@ export const games = sqliteTable('games', {
 }));
 // 游戏分类
 export const platforms = sqliteTable('platforms', {
-  id: integer('id').primaryKey(),
+  id: integer('id').primaryKey({ autoIncrement: true }),
   slug: text('slug').notNull().unique(),
-  name: text('name').notNull(),
+  name: text('name', { length: 30 }).notNull(),
   icon: text('icon'),
-});
+}, (table) => ({
+  slug: index("slug").on(table.slug),
+}));
 // 游戏分类
 export const categories = sqliteTable('categories', {
   id: integer('id').primaryKey(),
