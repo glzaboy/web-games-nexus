@@ -89,6 +89,10 @@ export const gamesRelations = relations(games, ({ one, many }) => ({
     fields: [games.categoryId],
     references: [categories.id],
   }),
+  platform: one(platforms, {
+    fields: [games.platformId],
+    references: [platforms.id],
+  }),
   collections: many(collectionGames),
   reviews: many(reviews),
 }));

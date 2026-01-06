@@ -52,7 +52,7 @@ export default function Header() {
                             <NavigationMenu>
                                 <NavigationMenuList className="flex-wrap">
                                     {navigation.map((item) => (
-                                        <NavigationMenuItem>
+                                        <NavigationMenuItem key={item.name}>
                                             <Link
                                                 key={item.name}
                                                 href={item.href}

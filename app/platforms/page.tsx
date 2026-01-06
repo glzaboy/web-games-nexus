@@ -59,7 +59,6 @@ async function Platforms() {
             ]
         })
     ])
-    console.log(platforms);
     return (<>
         {
             platforms.map((element) => {
