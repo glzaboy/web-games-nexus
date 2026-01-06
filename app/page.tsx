@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     { name: "glzaboy", url: "github.com/SteamSda" }
   ],
 };
-import { getDb, getDbAsync } from "./lib/db";
+import { getDbAsync } from "@/lib/db";
 
 export default async function Home() {
   const db = await getDbAsync();
@@ -36,7 +36,7 @@ export default async function Home() {
   ]);
   console.log(hotGames, categories, collections);
   return (
-    <main className="flex-grow">
+    <main className="grow">
       <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <div className="px-4 py-6 sm:px-0">
           <section className="mb-12">

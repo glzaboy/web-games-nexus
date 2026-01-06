@@ -2,14 +2,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import {
-    LayoutDashboard,
-    ShoppingCart,
-    Users,
-    Settings,
     Sun,
     Moon,
     Menu,
-    X
+    X,
+    Gamepad2,
+    Birdhouse,
+    Joystick
 } from 'lucide-react';
 import { useState } from 'react'
 import { Button } from "@/components/ui/button";
@@ -27,14 +26,12 @@ import {
     NavigationMenuItem,
     NavigationMenuList,
 } from "@/components/ui/navigation-menu"
-
 export default function Header() {
     const { setTheme } = useTheme()
     const navigation = [
-        { name: '仪表盘', href: '#', icon: LayoutDashboard, current: true },
-        { name: '产品', href: '#', icon: ShoppingCart, current: false },
-        { name: '客户', href: '#', icon: Users, current: false },
-        { name: '设置', href: '#', icon: Settings, current: false },
+        { name: '首页', href: '/', icon: Birdhouse, current: true },
+        { name: '分类', href: '/categories', icon: Gamepad2, current: false },
+        { name: '平台', href: '/platforms', icon: Joystick, current: false }
     ];
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     return (
@@ -54,21 +51,20 @@ export default function Header() {
                         <nav className="hidden md:ml-10 md:flex md:space-x-8">
                             <NavigationMenu>
                                 <NavigationMenuList className="flex-wrap">
-                                    <NavigationMenuItem>
-                                        <Link href="/">
-                                            <Button variant={"ghost"} className="hover:text-2xl">首页</Button>
-                                        </Link>
-                                    </NavigationMenuItem>
-                                    <NavigationMenuItem>
-                                        <Link href="/categories">
-                                            <Button variant={"ghost"} className="hover:text-2xl">分类</Button>
-                                        </Link>
-                                    </NavigationMenuItem>
-                                    <NavigationMenuItem>
-                                        <Link href="/platforms">
-                                            <Button variant={"ghost"} className="hover:text-2xl">平台</Button>
-                                        </Link>
-                                    </NavigationMenuItem>
+                                    {navigation.map((item) => (
+                                        <NavigationMenuItem>
+                                            <Link
+                                                key={item.name}
+                                                href={item.href}
+                                                className={`block pl-3 pr-4 py-2 text-base font-medium hover:text-2xl`}
+                                            >
+                                                <div className="flex items-center">
+                                                    <item.icon className="mr-3 h-5 w-5" />
+                                                    {item.name}
+                                                </div>
+                                            </Link>
+                                        </NavigationMenuItem>
+                                    ))}
                                 </NavigationMenuList>
                             </NavigationMenu>
 

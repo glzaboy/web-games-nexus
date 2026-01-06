@@ -15,19 +15,6 @@ CREATE TABLE `collections` (
 	`cover_image` text,
 	`featured` integer DEFAULT false
 );
-CREATE TABLE `games` (
-	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
-	`slug` text NOT NULL,
-	`title` text NOT NULL,
-	`description` text,
-	`cover_image` text,
-	`game_url` text NOT NULL,
-	`play_url` text NOT NULL,
-	`category_id` integer,
-	`is_hot` integer DEFAULT false,
-	`created_at` integer NOT NULL,
-	FOREIGN KEY (`category_id`) REFERENCES `categories`(`id`) ON UPDATE no action ON DELETE no action
-);
 CREATE TABLE `platforms` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`created_at` integer DEFAULT (unixepoch()) NOT NULL,
@@ -72,14 +59,34 @@ INSERT INTO "categories" VALUES(8,1767598166,1767598166,'Puzzle','益智游戏',
 INSERT INTO "categories" VALUES(9,1767598166,1767598166,'Fighting','格斗游戏',NULL,NULL,1);
 INSERT INTO "categories" VALUES(10,1767598166,1767598166,'Racing','赛车游戏',NULL,NULL,1);
 INSERT INTO "categories" VALUES(11,1767598166,1767598166,'Music','音乐游戏',NULL,NULL,1);
+CREATE TABLE `games` (
+	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+	`created_at` integer DEFAULT (unixepoch()) NOT NULL,
+	`update_at` integer DEFAULT (unixepoch()) NOT NULL,
+	`slug` text NOT NULL,
+	`title` text NOT NULL,
+	`description` text,
+	`cover_image` text,
+	`game_url` text NOT NULL,
+	`play_url` text NOT NULL,
+	`category_id` integer,
+	`platform_id` integer,
+	`is_hot` integer DEFAULT false,
+	FOREIGN KEY (`category_id`) REFERENCES `categories`(`id`) ON UPDATE no action ON DELETE no action,
+	FOREIGN KEY (`platform_id`) REFERENCES `platforms`(`id`) ON UPDATE no action ON DELETE no action
+);
+INSERT INTO "games" VALUES(1,1767599937,1767599937,'1945 改 III','1945Kill',NULL,'https://img.1990i.com/arcadepic/1945kiii.png','rom=https://gamepad.steamsda.com/roms/1945kiii.zip&coreType=Arcade','gamepad.steamsda.com/EmulatorJS-4.2.3/index.html?rom=https://gamepad.steamsda.com/roms/1945kiii.zip&coreType=Arcade',1,1,0);
 DELETE FROM sqlite_sequence;
 INSERT INTO "sqlite_sequence" VALUES('platforms',3);
 INSERT INTO "sqlite_sequence" VALUES('categories',11);
+INSERT INTO "sqlite_sequence" VALUES('games',1);
 CREATE UNIQUE INDEX `collections_slug_unique` ON `collections` (`slug`);
-CREATE UNIQUE INDEX `games_slug_unique` ON `games` (`slug`);
-CREATE INDEX `slug_idx` ON `games` (`slug`);
-CREATE INDEX `hot_idx` ON `games` (`is_hot`);
 CREATE UNIQUE INDEX `platforms_slug_unique` ON `platforms` (`slug`);
 CREATE INDEX `idx_platforms_sulg` ON `platforms` (`slug`);
 CREATE UNIQUE INDEX `categories_slug_unique` ON `categories` (`slug`);
 CREATE INDEX `idx_categories_slug` ON `categories` (`slug`);
+CREATE UNIQUE INDEX `games_slug_unique` ON `games` (`slug`);
+CREATE INDEX `idx_games_title` ON `games` (`title`);
+CREATE INDEX `idx_games_platformID` ON `games` (`platform_id`);
+CREATE INDEX `idx_games_category` ON `games` (`category_id`);
+CREATE INDEX `idx_games_hot` ON `games` (`is_hot`);

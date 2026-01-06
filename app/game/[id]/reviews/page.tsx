@@ -1,17 +1,18 @@
 
 import { Button } from "@/components/ui/button";
-import { getDbAsync } from "../../lib/db"
+import { getDbAsync } from "@/lib/db"
 import { Metadata } from "next";
 import Link from 'next/link';
 import { Suspense } from "react";
 import { Flame } from 'lucide-react';
 import { Loading } from "@/components/game/Loading";
-
+// 或者
 export const revalidate = 0; // 禁用缓存
 
 
+
 export const metadata: Metadata = {
-    title: "分类",
+    title: "平台",
     description: "发现并游玩数千款免费在线游戏",
     keywords: ['游戏', '在线游戏', '免费游戏', '网页游戏', '休闲游戏'],
     openGraph: {
@@ -34,7 +35,7 @@ export default async function Categories() {
                     <section className="mb-1">
                         <div className="flex items-center gap-2 mb-6">
                             <Flame className="h-6 w-6 text-red-500" />
-                            <h2 className="text-2xl font-bold">分类</h2>
+                            <h2 className="text-2xl font-bold">平台</h2>
                         </div>
                     </section>
                     <>
@@ -47,26 +48,23 @@ export default async function Categories() {
         </main>
     </>
 }
-
 async function Platforms() {
     const db = await getDbAsync();
     //await new Promise(resolve => setTimeout(resolve, 3000));
-    const [categories] = await Promise.all([
-        db.query.categories.findMany({
-            where: (categories, { eq }) =>
-                eq(categories.enable, true) // 只查询活跃分类
-            ,
-            orderBy: (categories, { asc }) => [
-                asc(categories.sort),  // 先按 sort
-                asc(categories.id)     // 再按 id
+    const [platforms] = await Promise.all([
+        db.query.platforms.findMany({
+            orderBy: (platforms, { asc }) => [
+                asc(platforms.sort),  // 先按 sort
+                asc(platforms.id)     // 再按 id
             ]
         })
     ])
+    console.log(platforms);
     return (<>
         {
-            categories.map((element) => {
+            platforms.map((element) => {
                 return <Link key={element.id} href={{
-                    pathname: `/categories/${element.slug}`
+                    pathname: `/platforms/${element.slug}`
                 }}><Button variant="link" >{element.name}</Button></Link>
             })
         }

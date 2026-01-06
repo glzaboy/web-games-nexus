@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { getDbAsync } from "../lib/db"
+import { getDbAsync } from "../../lib/db"
 import { Metadata } from "next";
 import Link from 'next/link';
 import { Suspense } from "react";
