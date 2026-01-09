@@ -75,11 +75,10 @@ CREATE TABLE `games` (
 	FOREIGN KEY (`category_id`) REFERENCES `categories`(`id`) ON UPDATE no action ON DELETE no action,
 	FOREIGN KEY (`platform_id`) REFERENCES `platforms`(`id`) ON UPDATE no action ON DELETE no action
 );
-INSERT INTO "games" VALUES(1,1767599937,1767599937,'1945 改 III','1945Kill',NULL,'https://img.1990i.com/arcadepic/1945kiii.png','rom=https://gamepad.steamsda.com/roms/1945kiii.zip&coreType=Arcade','gamepad.steamsda.com/EmulatorJS-4.2.3/index.html?rom=https://gamepad.steamsda.com/roms/1945kiii.zip&coreType=Arcade',1,1,0);
+INSERT INTO "games" VALUES(1,1767599937,1767599937,'1945 改 III','1945Kill','《打击者1945III》（又名打击者1999）是日本彩京公司（Psikyo）于1999年推出的纵向卷轴射击类街机游戏，为《打击者1945》系列正传第三作，引入F-117、F-22等现代战机和X-36隐藏机体，显著提升了游戏的挑战性和可玩性 [4-5] [7]。','https://img.1990i.com/arcadepic/1945kiii.png','rom=https://gamepad.steamsda.com/roms/1945kiii.zip&coreType=Arcade','gamepad.steamsda.com/EmulatorJS-4.2.3/index.html?rom=https://gamepad.steamsda.com/roms/1945kiii.zip&coreType=Arcade',1,1,1);
+INSERT INTO "games" VALUES(2,1767881048,1767881048,'中国象棋','中国象棋','《FC 中国象棋经典版》作为一款在 FC 平台上的经典棋类游戏，将传统中国象棋与电子游戏巧妙融合，为玩家带来充满策略与智慧的对弈体验，深受广大棋类爱好者喜爱。  《FC中国象棋经典版》游戏简介  《FC中国象棋经典版》完美复刻传统中国象棋玩法，在FC游戏机上就能体验到这一传统棋艺的魅力。游戏提供人机对战与双人对战模式，玩家既可以独自挑战电脑AI，磨炼棋艺，也能和朋友来一场面对面的精彩对决。它有着简单、普通、困难等不同难度级别，满足不同水平玩家需求，是一款趣味性与策略性兼具的经典之作。  fc中国象棋经典版下载  《FC中国象棋经典版》规则介绍  棋盘由九条纵线和十条横线组成，中间以楚河汉界分隔。双方各有16枚棋子，包括将(帅)、士(仕)、象(相)、车、马、炮、卒(兵)。走棋时，红方先行，双方轮流各走一着。将(帅)在“九宫”内活动，每次一格;士(仕)沿“九宫”斜线走一格;象(相)走“田”字，不能过河，“田”字中心有子则不能走;车可沿直线或横线任意走;马走“日”字，有棋子绊马腿则不能走;炮走法同车，吃子时需隔一子;卒(兵)过河前只能直走一格，过河后可左右走一格，任何时候不能后退。  《FC中国象棋经典版》游戏特色  1. 原汁原味呈现中国象棋古老规则与玩法，让玩家感受传统棋艺魅力。  2. 多种难度级别设置，从新手适用的简单难度，到考验高手的困难难度，满足不同玩家水平。  3. 支持双人对战，增添社交互动性，朋友间可随时来一场象棋较量。  《FC中国象棋经典版》游戏亮点  1. 即使在FC有限机能下，也实现了较为智能的AI设计，电脑对手落子有策略，能给玩家带来挑战。  2. 简洁明了的像素棋盘与棋子画面，虽不华丽，但清晰展现棋盘布局，让玩家专注于棋局本身。  3. 游戏音效贴合象棋对弈场景，落子音效等增强游戏真实感。  《FC中国象棋经典版》经典棋谱推荐  1. “中炮对屏风马”：常见布局，红方以中炮开局进攻，黑方屏风马防御，双方展开激烈对抗，变化丰富。  2. “飞相局”：红方首着飞相，先稳固阵型，后续再伺机而动，注重子力协调与局面掌控。  3. “顺炮直车对横车”：双方第一步均架中炮，然后红方出直车，黑方出横车，开局就充满火药味，对攻激烈。  《FC中国象棋经典版》玩家评论  1. “这游戏让我对象棋产生浓厚兴趣，小时候常和小伙伴一起玩，如今还会在模拟器上重温，难度设置很有意思。”  2. “AI有一定水平，困难模式下想赢不容易，通过不断对战，我的象棋水平提高了很多。”  3. “双人对战模式太棒了，和朋友一边下棋一边斗嘴，充满欢乐，是童年美好回忆。”  《FC 中国象棋经典版》凭借对传统中国象棋规则的忠实还原、丰富的游戏模式、智能的 AI 设计等，成为 FC 平台上的棋类游戏佳作。无论是象棋新手还是资深爱好者，都能从中获得独特乐趣与挑战，在电子游戏世界中领略中国象棋的无穷魅力 。',NULL,'rom=https://gamepad.steamsda.com/roms/nes/%E4%B8%AD%E5%9B%BD%E8%B1%A1%E6%A3%8B.nes&coreType=nes','https://gamepad.steamsda.com/EmulatorJS-4.2.3/index.html?rom=https://gamepad.steamsda.com/roms/nes/%E4%B8%AD%E5%9B%BD%E8%B1%A1%E6%A3%8B.nes',1,1,1);
 DELETE FROM sqlite_sequence;
-INSERT INTO "sqlite_sequence" VALUES('platforms',3);
-INSERT INTO "sqlite_sequence" VALUES('categories',11);
-INSERT INTO "sqlite_sequence" VALUES('games',1);
+INSERT INTO "sqlite_sequence" VALUES('games',2);
 CREATE UNIQUE INDEX `collections_slug_unique` ON `collections` (`slug`);
 CREATE UNIQUE INDEX `platforms_slug_unique` ON `platforms` (`slug`);
 CREATE INDEX `idx_platforms_sulg` ON `platforms` (`slug`);

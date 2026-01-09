@@ -5,18 +5,22 @@ interface Game {
     id: number;
     slug: string;
     title: string;
-    description?: string;
-    coverImage?: string;
+    description: string | null;
+    coverImage: string | null;
     gameUrl: string;
     playUrl: string;
     categoryId: number | null;
-    isHot?: boolean;
-    category?: {
-        id: number;
-        slug: string;
+    isHot: boolean | null;
+    category: {
+        sort: number | null;
         name: string;
+        slug: string;
         icon: string | null;
-    };
+        enable: boolean | null;
+        id: number;
+        createdAt: Date;
+        updateAt: Date;
+    } | null;
 }
 
 interface GameListProps {

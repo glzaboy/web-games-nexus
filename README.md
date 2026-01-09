@@ -59,5 +59,11 @@ npx wrangler d1 execute web-games-nexus --local --command="SELECT name FROM sqli
 ```
 # 执行命令
 ```bash
+npx wrangler d1 execute web-games-nexus --local --command="drop table _cf_METADATA;"
+npx wrangler d1 execute web-games-nexus --local --command="drop table reviews;"
+npx wrangler d1 execute web-games-nexus --local --command="drop table collections;"
+npx wrangler d1 execute web-games-nexus --local --command="drop table collection_games;"
+npx wrangler d1 execute web-games-nexus --local --command="drop table games;"
+npx wrangler d1 execute web-games-nexus --local --command="drop table categories;"
 npx wrangler d1 execute web-games-nexus --local --command="drop table platforms;"
 ```

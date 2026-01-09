@@ -10,12 +10,22 @@ interface GameCardProps {
         id: number;
         slug: string;
         title: string;
-        description?: string;
-        coverImage?: string;
-        isHot?: boolean;
-        category?: {
+        description: string | null;
+        coverImage: string | null;
+        gameUrl: string;
+        playUrl: string;
+        categoryId: number | null;
+        isHot: boolean | null;
+        category: {
+            sort: number | null;
             name: string;
-        };
+            slug: string;
+            icon: string | null;
+            enable: boolean | null;
+            id: number;
+            createdAt: Date;
+            updateAt: Date;
+        } | null;
     };
     showCategory?: boolean;
 }
@@ -54,7 +64,7 @@ export default function GameCard({ game, showCategory = true }: GameCardProps) {
             </CardContent>
             <CardFooter className="p-4 pt-0">
                 <Button asChild className="w-full">
-                    <a href={`/games/${game.slug}`}>查看详情</a>
+                    <a href={`/game/${game.id}`}>查看详情</a>
                 </Button>
             </CardFooter>
         </Card>

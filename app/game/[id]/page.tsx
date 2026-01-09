@@ -50,16 +50,8 @@ export default async function Game({
         <main className="grow">
             <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
                 <div className="px-4 py-6 sm:px-0">
-                    <section className="mb-1">
-                        <div className="flex items-center gap-2 mb-6">
-                            <Flame className="h-6 w-6 text-red-500" />
-                            <h2 className="text-2xl font-bold">平台</h2>
-                        </div>
-                    </section>
                     <>
-                        <Suspense fallback={<Loading />} >
-                            <GameView id={id}></GameView>
-                        </Suspense>
+                        <GameView id={id}></GameView>
                     </>
                 </div>
             </div>
@@ -94,7 +86,7 @@ async function GameView({ id, }: { id: number }) {
     return (
         <div className="space-y-6">
             {games.map((game) => (
-                <Card key={game.id} className="overflow-hidden">
+                <>
                     {/* 移动端标题 - 移动到最顶部 */}
                     <div className="lg:hidden p-4 pb-0 border-b">
                         <div className="flex items-center justify-between">
@@ -140,11 +132,6 @@ async function GameView({ id, }: { id: number }) {
                                 <div className="flex items-start justify-between mb-3">
                                     <div>
                                         <h1 className="text-2xl font-bold">{game.title}</h1>
-                                        {game.description && (
-                                            <p className="text-gray-600 dark:text-gray-400 mt-1">
-                                                {game.description}
-                                            </p>
-                                        )}
                                     </div>
                                     {game.categoryId && (
                                         <Badge variant="secondary">{game.category?.name}</Badge>
@@ -231,8 +218,9 @@ async function GameView({ id, }: { id: number }) {
                             </div>
                         </div>
                     </div>
-                </Card>
-            ))}
-        </div>
+                </>
+            ))
+            }
+        </div >
     )
 }
