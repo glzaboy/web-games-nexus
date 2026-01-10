@@ -2,9 +2,6 @@ import { Button } from "@/components/ui/button";
 import { getDbAsync } from "@/lib/db"
 import { Metadata } from "next";
 import Link from 'next/link';
-import { Suspense } from "react";
-import { Loading } from "@/components/game/Loading";
-import { Card } from "@/components/ui/card";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 
@@ -161,7 +158,9 @@ async function GameView({ id, }: { id: number }) {
                                             <h3 className="font-semibold">游戏介绍</h3>
                                         </div>
                                         <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                                            {game.description ?? "暂无介绍"}
+                                            <pre className="text-wrap">
+                                                {game.description ?? "暂无介绍"}
+                                            </pre>
                                         </p>
                                     </div>
                                 </>
@@ -173,14 +172,14 @@ async function GameView({ id, }: { id: number }) {
                                     <Button
                                         asChild
                                         size="lg"
-                                        className="flex-1 bg-linear-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white"
+                                        className="flex-1 text-lg bg-linear-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white"
                                     >
                                         <Link
                                             href={`https://gamepad.steamsda.com/EmulatorJS-4.2.3/index.html?${game.gameUrl}`}
                                             target="_blank"
                                             className="flex items-center justify-center gap-2"
                                         >
-                                            <Play className="h-5 w-5" />
+                                            <Play className="h-6 w-6 sm:h-5 sm:w-5" />
                                             立即开始游戏
                                         </Link>
                                     </Button>
@@ -189,9 +188,9 @@ async function GameView({ id, }: { id: number }) {
                                             <Button
                                                 variant="outline"
                                                 size="lg"
-                                                className="flex-1"
+                                                className="flex-1 text-lg"
                                             >
-                                                <Download className="h-5 w-5 mr-2" />
+                                                <Download className="h-6 w-6 sm:h-5 sm:w-5 mr-2" />
                                                 收藏游戏
                                             </Button>
                                         </AlertDialogTrigger>
