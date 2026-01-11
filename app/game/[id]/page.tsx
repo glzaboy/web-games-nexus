@@ -103,7 +103,7 @@ async function GameView({ id, }: { id: number }) {
                         {/* 左侧：自适应图片区域 */}
                         <div className="lg:w-2/5 p-4 lg:p-6">
                             <div className="relative rounded-lg overflow-hidden border bg-gray-100 dark:bg-gray-800">
-                                <div className="relative aspect-[4/3] sm:aspect-video lg:aspect-square">
+                                <div className="relative aspect-4/3 sm:aspect-video lg:aspect-square">
                                     <Image
                                         src={game.coverImage ?? "/placeholder.png"}
                                         alt={game.title}

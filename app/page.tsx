@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { Flame, Grid3X3, Gamepad2 } from 'lucide-react';
-const ITEMS_PER_PAGE = 1;
+const ITEMS_PER_PAGE = 12;
 
 
 export const metadata: Metadata = {
