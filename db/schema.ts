@@ -23,11 +23,13 @@ export const games = sqliteTable('games', {
   categoryId: integer('category_id').references(() => categories.id),
   platformId: integer('platform_id').references(() => platforms.id),
   isHot: integer('is_hot', { mode: 'boolean' }).default(false),
+  enable: integer("enable", { mode: "boolean" }).default(true),
 }, (table) => [
   index('idx_games_title').on(table.title),
-  index('idx_games_platformID').on(table.platformId),
-  index('idx_games_category').on(table.categoryId),
-  index('idx_games_hot').on(table.isHot)
+  index('idx_games_platformID').on(table.platformId, table.enable),
+  index('idx_games_category').on(table.categoryId, table.enable),
+  index('idx_games_hot').on(table.isHot, table.enable),
+  index('idx_games_enable').on(table.enable)
 ]);
 // 游戏分类
 export const platforms = sqliteTable('platforms', {
