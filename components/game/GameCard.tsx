@@ -8,12 +8,11 @@ import Image from 'next/image';
 interface GameCardProps {
     game: {
         id: number;
-        slug: string;
         title: string;
         description: string | null;
         coverImage: string | null;
-        gameUrl: string;
-        playUrl: string;
+        romUrl: string;
+        coreCype: string;
         categoryId: number | null;
         isHot: boolean | null;
         category: {
@@ -40,6 +39,7 @@ export default function GameCard({ game, showCategory = true }: GameCardProps) {
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                     sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    unoptimized={true}
                 />
                 {game.isHot && (
                     <Badge className="absolute top-2 left-2 bg-red-500 hover:bg-red-600">

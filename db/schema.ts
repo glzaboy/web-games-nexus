@@ -14,12 +14,11 @@ const baseTable = {
 // 游戏表
 export const games = sqliteTable('games', {
   ...baseTable,
-  slug: text('slug').notNull().unique(),
   title: text('title').notNull(),
   description: text('description'),
   coverImage: text('cover_image'),
-  gameUrl: text('game_url').notNull(), // 游戏实际URL
-  playUrl: text('play_url').notNull(), // 直接通过a标签访问
+  romUrl: text('rom_url').notNull(), // 游戏实际URL
+  coreCype: text('core_type').notNull(), // 直接通过a标签访问
   categoryId: integer('category_id').references(() => categories.id),
   platformId: integer('platform_id').references(() => platforms.id),
   isHot: integer('is_hot', { mode: 'boolean' }).default(false),

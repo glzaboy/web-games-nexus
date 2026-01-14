@@ -3,12 +3,11 @@ import GameCard from "./GameCard";
 
 interface Game {
     id: number;
-    slug: string;
     title: string;
     description: string | null;
     coverImage: string | null;
-    gameUrl: string;
-    playUrl: string;
+    romUrl: string;
+    coreCype: string;
     categoryId: number | null;
     isHot: boolean | null;
     category: {

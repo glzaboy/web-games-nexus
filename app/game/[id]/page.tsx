@@ -175,7 +175,7 @@ async function GameView({ id, }: { id: number }) {
                                         className="flex-1 text-lg bg-linear-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white"
                                     >
                                         <Link
-                                            href={`https://gamepad.steamsda.com/EmulatorJS-4.2.3/index.html?${game.gameUrl}`}
+                                            href={`https://gamepad.steamsda.com/EmulatorJS-4.2.3/index.html?rom=${game.romUrl}&coreType=${game.coreCype}`}
                                             target="_blank"
                                             className="flex items-center justify-center gap-2"
                                         >
