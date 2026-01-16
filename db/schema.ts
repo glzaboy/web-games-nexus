@@ -23,6 +23,7 @@ export const games = sqliteTable('games', {
   platformId: integer('platform_id').references(() => platforms.id),
   isHot: integer('is_hot', { mode: 'boolean' }).default(false),
   enable: integer("enable", { mode: "boolean" }).default(true),
+  sort: integer('sort').default(0),
 }, (table) => [
   index('idx_games_title').on(table.title),
   index('idx_games_platformID').on(table.platformId, table.enable),

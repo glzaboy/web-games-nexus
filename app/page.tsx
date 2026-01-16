@@ -4,7 +4,7 @@ const ITEMS_PER_PAGE = 12;
 
 
 export const metadata: Metadata = {
-  title: "Game - 在线FC游戏，复古游戏，超级玛丽",
+  title: "Game - 在线FC游戏，复古游戏，超级玛丽，模拟器",
   description: "发现并游玩数千款免费在线游戏",
   keywords: ['游戏', '在线游戏', '免费游戏', '网页游戏', '休闲游戏'],
   openGraph: {
@@ -38,8 +38,11 @@ export default async function Home({
   const [hotGames, categories, allGames, totalGamesResult] = await Promise.all([
     db.query.games.findMany({
       where: (games, { eq }) => eq(games.isHot, true),
-      limit: 12,
-      with: { category: true }
+      limit: 8,
+      with: { category: true },
+      orderBy: (games, { desc }) => [
+        desc(games.sort)
+      ]
     }),
     db.query.categories.findMany({
       limit: 8, orderBy: (categories, { asc, desc }) => [],
@@ -49,7 +52,10 @@ export default async function Home({
       //where: (games, { eq }) => eq(games.isHot, true),
       offset: (page - 1) * ITEMS_PER_PAGE,
       limit: ITEMS_PER_PAGE,
-      with: { category: true }
+      with: { category: true },
+      orderBy: (games, { desc }) => [
+        desc(games.sort)
+      ]
     }),
     db.select({ count: count() }).from(games)
   ]);
