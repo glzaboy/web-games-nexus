@@ -50,9 +50,9 @@ export default function Footer() {
                             联系我们
                         </h4>
                         <address className={`not-italic text-sm`}>
-                            <div>北京市朝阳区科技园区</div>
-                            <div className="mt-1">info@brandname.com</div>
-                            <div className="mt-1">+86 10 1234 5678</div>
+                            <div>北京市朝阳区望京东路8号院 锐创国际中心A座12层1208室</div>
+                            <div className="mt-1"><a href='mailto:support@steamsda.com'>support@steamsda.com</a></div>
+                            <div className="mt-1">+86 10 8765 4321</div>
                         </address>
                     </div>
                 </div>
