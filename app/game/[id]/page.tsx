@@ -17,6 +17,7 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
+import GameMarkdown from "@/components/game/GameMarkdown.server";
 
 export const revalidate = 0; // 禁用缓存
 
@@ -111,6 +112,7 @@ async function GameView({ id, }: { id: number }) {
                                         className="object-contain p-2"
                                         sizes="(max-width: 640px) 90vw, (max-width: 768px) 70vw, (max-width: 1024px) 40vw, 35vw"
                                         priority
+                                        unoptimized={true}
                                     />
                                 </div>
                                 {game.isHot && (
@@ -157,11 +159,7 @@ async function GameView({ id, }: { id: number }) {
                                             <Info className="h-4 w-4 text-blue-500" />
                                             <h3 className="font-semibold">游戏介绍</h3>
                                         </div>
-                                        <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                                            <pre className="text-wrap">
-                                                {game.description ?? "暂无介绍"}
-                                            </pre>
-                                        </p>
+                                        <GameMarkdown markdownContent={game.description}></GameMarkdown>
                                     </div>
                                 </>
                             )}

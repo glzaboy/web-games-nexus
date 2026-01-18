@@ -97,10 +97,11 @@ INSERT INTO "games" VALUES(17,1768547522,1768547522,'脱狱','脱狱','https://g
 INSERT INTO "games" VALUES(18,1768547837,1768547837,'90坦克','90坦克','https://gamepad.steamsda.com/roms/nes/Battle%20City%20(J).nes.png','https://gamepad.steamsda.com/roms/nes/Battle%20City%20(J).nes','Nintendo Entertainment System',2,3,1,1,997);
 INSERT INTO "games" VALUES(19,1768548356,1768548356,'冒险岛','冒险岛','https://gamepad.steamsda.com/roms/nes/%E5%86%92%E9%99%A9%E5%B2%9B.nes.png','https://gamepad.steamsda.com/roms/nes/%E5%86%92%E9%99%A9%E5%B2%9B.nes','Nintendo Entertainment System',3,3,1,1,990);
 INSERT INTO "games" VALUES(20,1768548563,1768548563,'火箭车','火箭车','https://gamepad.steamsda.com/roms/nes/%E7%81%AB%E7%AE%AD%E8%BD%A6.nes.png','https://gamepad.steamsda.com/roms/nes/%E7%81%AB%E7%AE%AD%E8%BD%A6.nes','Nintendo Entertainment System',3,3,1,1,980);
+INSERT INTO "games" VALUES(21,1768634780,1768634780,'恐龙快打','恐龙快打','https://gamepad.steamsda.com/roms/arcade/dino.zip.png','https://gamepad.steamsda.com/roms/arcade/dino.zip','Arcade',5,2,1,1,1001);
 DELETE FROM sqlite_sequence;
 INSERT INTO "sqlite_sequence" VALUES('categories',11);
 INSERT INTO "sqlite_sequence" VALUES('platforms',4);
-INSERT INTO "sqlite_sequence" VALUES('games',20);
+INSERT INTO "sqlite_sequence" VALUES('games',21);
 CREATE UNIQUE INDEX `categories_slug_unique` ON `categories` (`slug`);
 CREATE INDEX `idx_categories_slug` ON `categories` (`slug`);
 CREATE UNIQUE INDEX `collections_slug_unique` ON `collections` (`slug`);
