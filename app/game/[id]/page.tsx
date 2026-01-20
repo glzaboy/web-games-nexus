@@ -84,7 +84,7 @@ async function GameView({ id, }: { id: number }) {
     return (
         <div className="space-y-6">
             {games.map((game) => (
-                <>
+                <div key={game.id}>
                     {/* 移动端标题 - 移动到最顶部 */}
                     <div className="lg:hidden p-4 pb-0 border-b">
                         <div className="flex items-center justify-between">
@@ -177,7 +177,7 @@ async function GameView({ id, }: { id: number }) {
                                             target="_blank"
                                             className="flex items-center justify-center gap-2"
                                         >
-                                            <Play className="h-6 w-6 sm:h-5 sm:w-5" />
+                                            <Play className="h-6 w-6 sm:h-6 sm:w-6" />
                                             立即开始游戏
                                         </Link>
                                     </Button>
@@ -188,7 +188,7 @@ async function GameView({ id, }: { id: number }) {
                                                 size="lg"
                                                 className="flex-1 text-lg"
                                             >
-                                                <Download className="h-6 w-6 sm:h-5 sm:w-5 mr-2" />
+                                                <Download className="h-6 w-6 sm:h-6 sm:w-6 mr-2" />
                                                 收藏游戏
                                             </Button>
                                         </AlertDialogTrigger>
@@ -215,7 +215,7 @@ async function GameView({ id, }: { id: number }) {
                             </div>
                         </div>
                     </div>
-                </>
+                </div>
             ))
             }
         </div >
